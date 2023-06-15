@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  node:
+    image: linux/node
+    build: 
+      context: node
+      dockerfile: Dockerfile
+    stdin_open: true
+  ubuntu:
+    image: linux/ubuntu
+    build: 
+      context: https://github.com/dev-pop-21/dockerfile/tree/master/ubuntu
+      dockerfile: Dockerfile
+    stdin_open: true
