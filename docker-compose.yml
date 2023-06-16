@@ -1,34 +1,30 @@
 version: '3'
 
 services:
-  # Node
   node:
     image: linux/node
     build: 
       context: dockerfile
       dockerfile: note.Dockerfile
     stdin_open: true
-    restart: always
-    networks:
-      - wlan
-  # Ubuntu
+    
   ubuntu:
     image: linux/ubuntu
     build: 
       context: dockerfile
       dockerfile: ubuntu.Dockerfile
     stdin_open: true
-    restart: always
     networks:
-      - wlan
+      - vlan
 
 networks:
-  wlan:
-    name: ipvlan
+  vlan:
+    name: vlan
+    driver: macvlan
     driver_opts:
-      parent: wlp3s0
+      parent: en0
     ipam:
-      driver: default
       config:
-        - subnet: 192.168.40.0/24
-          gateway: 192.168.40.1
+        - subnet: 192.168.144.0/24
+          gateway: 192.168.144.254
+          ip_range: 192.168.144.1/30
