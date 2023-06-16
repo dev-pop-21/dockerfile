@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   node:
     image: linux/node
     build: 
@@ -15,3 +14,11 @@ services:
       context: dockerfile
       dockerfile: ubuntu.Dockerfile
     stdin_open: true
+
+networks:
+  default:
+    name: network
+    ipam:
+      config:
+        - subnet: 192.168.40.0/24
+        - gateway: 192.168.40.1
