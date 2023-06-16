@@ -1,14 +1,17 @@
 version: '3'
 
 services:
+
   node:
     image: linux/node
     build: 
-      context: node
-      dockerfile: Dockerfile
+      context: dockerfile
+      dockerfile: note.Dockerfile
     stdin_open: true
+    
   ubuntu:
+    image: linux/ubuntu
     build: 
-      context: ubuntu
-      dockerfile: Dockerfile
+      context: dockerfile
+      dockerfile: ubuntu.Dockerfile
     stdin_open: true
