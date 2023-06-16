@@ -1,24 +1,34 @@
 version: '3'
 
 services:
+  # Node
   node:
     image: linux/node
     build: 
       context: dockerfile
       dockerfile: note.Dockerfile
     stdin_open: true
-    
+    restart: always
+    networks:
+      - wlan
+  # Ubuntu
   ubuntu:
     image: linux/ubuntu
     build: 
       context: dockerfile
       dockerfile: ubuntu.Dockerfile
     stdin_open: true
+    restart: always
+    networks:
+      - wlan
 
 networks:
-  default:
-    name: network
+  wlan:
+    name: ipvlan
+    driver_opts:
+      parent: wlp3s0
     ipam:
+      driver: default
       config:
         - subnet: 192.168.40.0/24
-        - gateway: 192.168.40.1
+          gateway: 192.168.40.1
