@@ -13,4 +13,4 @@ services:
     build: 
       context: dockerfile
       dockerfile: ubuntu.Dockerfile
-    stdin_open: truez
+    stdin_open: true
